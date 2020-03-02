@@ -454,7 +454,7 @@
 
   block_devs:
     base_dirs:
-      - (/dev/block/bootdevice/by-name)
+      - /dev/block/bootdevice/by-name
     system:
       - /dev/block/bootdevice/by-name/system
       - /dev/block/mmcblk0p63
