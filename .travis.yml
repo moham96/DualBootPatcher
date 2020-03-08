@@ -21,14 +21,14 @@ script:
     make android-system_armeabi-v7a -j16 && make -C data/devices -j16
     exit
     EOF
-  - |
-    docker run --rm -i -e USER_ID=$(id -u) -e GROUP_ID=$(id -g) -v "$(pwd):/builder/DualBootPatcher:rw,z" -v "${HOME}/.android:/builder/.android:rw,z" yshalsager/dualbootpatcher:9.3.0-9-linux bash << EOF
+    #  - |
+          #    docker run --rm -i -e USER_ID=$(id -u) -e GROUP_ID=$(id -g) -v "$(pwd):/builder/DualBootPatcher:rw,z" -v "${HOME}/.android:/builder/.android:rw,z" yshalsager/dualbootpatcher:9.3.0-9-linux bash << EOF
     # Build Utilities Zip
-    cd ~/DualBootPatcher/builder && ./utilities/create.sh
+    #    cd ~/DualBootPatcher/builder && ./utilities/create.sh
     # Build Linux
-    cmake .. -DMBP_BUILD_TARGET=desktop -DMBP_PORTABLE=ON && make -j16 && cpack
-    exit
-    EOF
+    #cmake .. -DMBP_BUILD_TARGET=desktop -DMBP_PORTABLE=ON && make -j16 && cpack
+    #    exit
+    #    EOF
 after_success:
   - export TRAVIS_CURRENT_DATE=$(date +"%d%m%y-%Hh%Mm")
   # Check output & md5sum
