@@ -7,9 +7,10 @@ before_install:
   # Clone DualBootPatcher Repository
   - git clone --recursive https://github.com/moham96/DualBootPatcher -b master DualBootPatcher/
   # Pull docker images
-  - docker pull yshalsager/dualbootpatcher:9.3.0-9-base
-  - docker pull yshalsager/dualbootpatcher:9.3.0-9-android
-  - docker pull yshalsager/dualbootpatcher:9.3.0-9-linux
+  - docker pull silverx2222/dualbootpatcher:9.3.0-14-base
+  - docker pull silverx2222/dualbootpatcher:9.3.0-14-android
+  - docker pull silverx2222/dualbootpatcher:9.3.0-14-linux
+
 script:
   # Make work directories
   - mkdir $HOME/.android
