@@ -15,14 +15,14 @@ script:
   make android-system_armeabi-v7a -j16 && make -C data/devices -j16
   exit
   EOF
-  #  - |
-        #    docker run --rm -i -e USER_ID=$(id -u) -e GROUP_ID=$(id -g) -v "$(pwd):/builder/DualBootPatcher:rw,z" -v "${HOME}/.android:/builder/.android:rw,z" yshalsager/dualbootpatcher:9.3.0-9-linux bash << EOF
+- |
+  docker run --rm -i -e USER_ID=$(id -u) -e GROUP_ID=$(id -g) -v "$(pwd):/builder/DualBootPatcher:rw,z" -v "${HOME}/.android:/builder/.android:rw,z" yshalsager/dualbootpatcher:9.3.0-9-linux bash << EOF
   # Build Utilities Zip
-  #    cd ~/DualBootPatcher/builder && ./utilities/create.sh
+  cd ~/DualBootPatcher/builder && ./utilities/create.sh
   # Build Linux
-  #cmake .. -DMBP_BUILD_TARGET=desktop -DMBP_PORTABLE=ON && make -j16 && cpack
-  #    exit
-  #    EOF
+  #  cmake .. -DMBP_BUILD_TARGET=desktop -DMBP_PORTABLE=ON && make -j16 && cpack
+  exit
+  EOF
   #after_success:
   #- export TRAVIS_CURRENT_DATE=$(date +"%d%m%y-%Hh%Mm")
   #- ls -l ${TRAVIS_BUILD_DIR}/DualBootPatcher/Android_GUI/build/outputs/apk/debug/Android_GUI-debug.apk
@@ -39,7 +39,9 @@ deploy:
   provider: releases
   api_key:
     secure: i3Ls3oVNxoF/nZIewfwcuckT/Z4wxu7+N5Tt0smT1gzFLCXD1/trtEbtOrOXot7R1sppzzM7v8fLtIM6Ut/i+KtYP70NpAMbl7UXwHGj/5pv6Ulj9H8T9Qt2QiVV93fUsR9vWODY45Y4cfnuQBqiKlAXf8M/b1a5asJHl2BWX6Pf/SsN+uo2DWTrsqma+vTNAZWzzv6JQDyNWQWP9oTTEeNAM6sjlQwE+Xpl6/RicSY8aMCCK48+tSvyaLH1mjCz+pz8Gvf0Dq97LVfI7yvdA2pTxqQ3082ZyPbovpXut8+Ez4NsSDsxvxS9K8MrL98CdWOwFUxsZd6fgbsRT/t09xr3ieWOX26CYmdgLqwqVz33w9rlFLGOawN2oF3e1r7EUZxbHCaEe1eVt5uGBJrDiGtjk8KaXDpNXAWPwfUIXHzEPIyB5p/zAnWNobZlkd9MGhWKFQ2TQ2K/rm3kLRlSLVG0FIi0hI2yFr6DMIiChU6sFkg5ejEOcFCF7XI4liSMXADc+Fid93W/IpiupmMWMPtwszU5mZglNjfsEyA4p2Qjn6/KRc4AZnxkE6TKx3zDgrIVsTb/NY2wKGgMrbemHHqfV5j/N8ZR2zVdxfmsfbifK5GnYh2SfYcV55+CSMg3Plngbk4Iv7GPaaH5GNJm5haPYGY9DbM44kLgQub2gBE=
-  file: Android_GUI/build/outputs/apk/debug/Android_GUI-debug.apk
+  file:
+        - Android_GUI/build/outputs/apk/debug/Android_GUI-debug.apk
+        - builder/utilities/DualBootUtilities-9.3.0.zip
   skip_cleanup: true
   draft: true
   on:
