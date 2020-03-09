@@ -44,4 +44,3 @@ deploy:
   draft: true
   on:
     repo: moham96/DualBootPatcher
-    branch: heads/moham96/master
