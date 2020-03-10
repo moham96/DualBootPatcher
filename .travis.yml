@@ -16,7 +16,7 @@ script:
   exit
   EOF
 - |
-  docker run --rm -i -e USER_ID=$(id -u) -e GROUP_ID=$(id -g) -v "$(pwd):/builder/DualBootPatcher:rw,z" -v "${HOME}/.android:/builder/.android:rw,z" yshalsager/dualbootpatcher:9.3.0-9-linux bash << EOF
+  docker run --rm -i -e USER_ID=$(id -u) -e GROUP_ID=$(id -g) -v "$(pwd):/builder/DualBootPatcher:rw,z" -v "${HOME}/.android:/builder/.android:rw,z" silverx2222/dualbootpatcher:9.3.0-14-linux bash << EOF
   # Build Utilities Zip
   cd ~/DualBootPatcher/builder && ./utilities/create.sh
   # Build Linux
