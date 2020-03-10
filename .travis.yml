@@ -20,7 +20,7 @@ script:
   # Build Utilities Zip
   cd ~/DualBootPatcher/builder && ./utilities/create.sh
   # Build Linux
-  cmake .. -DMBP_BUILD_TARGET=desktop -DMBP_PORTABLE=ON && make -j16 && cpack
+  #  cmake .. -DMBP_BUILD_TARGET=desktop -DMBP_PORTABLE=ON && make -j16 && cpack
   exit
   EOF
   #after_success:
@@ -42,7 +42,7 @@ deploy:
   file:
         - Android_GUI/build/outputs/apk/debug/Android_GUI-debug.apk
         - builder/utilities/DualBootUtilities-9.3.0.zip
-        - builder/DualBootPatcher-9.3.0-Linux.zip
+          #        - builder/DualBootPatcher-9.3.0-Linux.zip
   skip_cleanup: true
   draft: true
   on:
